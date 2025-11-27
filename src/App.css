@@ -1,0 +1,99 @@
+/*---------------------- botones ----------------------*/
+.btn-buscar{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.btn-buscar:hover {
+  transform: translateY(-4px); 
+}
+.btn-buscar:focus {
+  outline: none;
+}
+.btn-limpiar{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
+  background-color: #504848;
+  color: white;
+}
+.btn-limpiar:hover {
+  transform: translateY(-4px); 
+  background-color: #726d6d !important;
+  color: white !important;
+}
+.btn-limpiar:focus {
+  outline: none;
+}
+
+.btn-acciones {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-acciones:hover,
+.btn-acciones:focus,
+.btn-acciones:active {
+  border: none !important;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-nuevo{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.btn-nuevo:hover {
+  transform: translateY(-4px); 
+}
+.btn-nuevo:focus {
+  outline: none;
+}
+
+
+.btn-eliminar{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
+  background-color: #c72222;
+  color: white;
+}
+.btn-eliminar:hover {
+  transform: translateY(-4px); 
+  background-color: #f13c3c !important;
+  color: white !important;
+}
+.btn-eliminar:focus {
+  outline: none;
+}
+
+.btn-exportar{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
+  background-color: #32a732;
+  color: white;
+}
+.btn-exportar:hover {
+  transform: translateY(-4px); 
+  background-color: #59ca59 !important;
+  color: white !important;
+}
+.btn-exportar:focus {
+  outline: none;
+}
+
+
+
+/*---------------------- cards ----------------------*/
+.card-filtros{
+  width: 100%;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+}
+.card-tablas{
+  width: 100%;
+  box-shadow: 3px 3px 7px rgba(0,0,0,0.2);
+}
