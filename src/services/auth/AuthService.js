@@ -53,22 +53,3 @@ function logout(values){
       throw error;
     });
 }
-
-/**
- import { useSelector } from 'react-redux';
-
-function SomeComponent() {
-  const token = useSelector((state) => state.auth.token);
-
-  const fetchData = async () => {
-    const res = await fetch('http://localhost:8000/api/protected', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = await res.json();
-    console.log(data);
-  };
- * 
- * 
- */

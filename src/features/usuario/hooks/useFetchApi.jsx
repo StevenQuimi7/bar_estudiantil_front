@@ -4,6 +4,7 @@ import { message, notification } from 'antd';
 import moment from 'moment';
 export const useFetchApi = () => {
     const [usuarios, setUsuarios] = useState({});
+    const [miPerfil, setMiPerfil] = useState({});
     const [roles, setRoles] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [messageApi, contextHolder] = message.useMessage();
@@ -153,6 +154,22 @@ export const useFetchApi = () => {
         }));
     };
 
+    const consultaMiPerfil = async(values = {})=>{
+        try {
+            setIsLoading(true);
+            const response = await UsuarioService.getUsuario(values);
+            if(response.ok){
+                const { data } = response
+                setMiPerfil(data);
+            }
+        } catch (error) {
+            const msj = error?.msj ?? ['Error en el servidor'];
+            mensaje("error",msj);
+        }finally{
+            setIsLoading(false);
+        }
+    }
+
     return {
         usuarios, setUsuarios,
         isLoading, setIsLoading,
@@ -161,6 +178,8 @@ export const useFetchApi = () => {
         updateUsuario,
         deleteUsuario,
         restoreUsuario,
+        consultaMiPerfil,
+        miPerfil,
         mensaje, contextHolder,
         openNotificationWithIcon, contextHolder2,
         consultaRoles, roles

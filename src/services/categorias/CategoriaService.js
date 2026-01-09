@@ -109,7 +109,7 @@ function deleteCategoria(values){
 }
 function comboCategorias(){
     const requestOptions = {
-        method: "DELETE",
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
@@ -118,7 +118,7 @@ function comboCategorias(){
         // body: JSON.stringify(values),
 
     };
-    return fetch(`${constants.API_URL}/comboCategorias`, requestOptions)
+    return fetch(`${constants.API_URL}/categorias/comboCategorias`, requestOptions)
     .then(async (response) => {
       const data = await response.json();
       if (!data.ok) {

@@ -21,6 +21,7 @@ export const CrearActualizarCursoModal = ({
   
   const [form] = Form.useForm();
   const [error, setError] = useState({});
+  const [esBachiller,setEsBachiller] = useState(false);
   const onFinish = (values) =>{
     isCreate ? guardar(values) : actualizar(values);
   }
@@ -51,6 +52,15 @@ export const CrearActualizarCursoModal = ({
       if(response?.error?.formulario !== null){
         setError(response.error.formulario);
       }
+    }
+  }
+
+  const validaBachiller = (value) => {
+    const nivel = comboNiveles.find((x) => x.value == value);
+    if(nivel && nivel.label.toLowerCase() === "bachillerato"){
+      setEsBachiller(true);
+    }else{
+      setEsBachiller(false);
     }
   }
 
@@ -116,6 +126,7 @@ export const CrearActualizarCursoModal = ({
                 <Select
                   style={{ width: '100%' }}
                   showSearch
+                  onChange={(e)=>validaBachiller(e)}
                   placeholder="Selecciona un nivel"
                   filterOption={(input, option) =>
                     (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
@@ -180,38 +191,40 @@ export const CrearActualizarCursoModal = ({
                 <Input size="middle" placeholder="escriba una curso" />
               </Form.Item>
             </Col>
-            <Col xs={12}>
-              <Form.Item 
-                label="Especialidad" 
-                name="id_especialidad"
-                rules={[
-                    {
-                      required: false,
-                      message: "Por favor, seleccion una especialidad",
-                    },
-                  ]}
-                validateStatus={error?.id_especialidad?.length ? "error" : ""}
-                help={
-                  error?.id_especialidad?.length ? (
-                    <ul style={{ margin: 0, paddingLeft: "20px" }}>
-                      {error?.id_especialidad.map((err, index) => (
-                        <li key={index}>{err}</li>
-                      ))}
-                    </ul>
-                  ) : ""
-                }
-                >
-                <Select
-                  style={{ width: '100%' }}
-                  showSearch
-                  placeholder="Selecciona una especialidad"
-                  filterOption={(input, option) =>
-                    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+            {esBachiller &&
+              <Col xs={12}>
+                <Form.Item 
+                  label="Especialidad" 
+                  name="id_especialidad"
+                  rules={[
+                      {
+                        required: false,
+                        message: "Por favor, seleccion una especialidad",
+                      },
+                    ]}
+                  validateStatus={error?.id_especialidad?.length ? "error" : ""}
+                  help={
+                    error?.id_especialidad?.length ? (
+                      <ul style={{ margin: 0, paddingLeft: "20px" }}>
+                        {error?.id_especialidad.map((err, index) => (
+                          <li key={index}>{err}</li>
+                        ))}
+                      </ul>
+                    ) : ""
                   }
-                  options={comboEspecialidades}
-                />
-              </Form.Item>
-            </Col>
+                  >
+                  <Select
+                    style={{ width: '100%' }}
+                    showSearch
+                    placeholder="Selecciona una especialidad"
+                    filterOption={(input, option) =>
+                      (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                    }
+                    options={comboEspecialidades}
+                  />
+                </Form.Item>
+              </Col>
+            }
             <Col xs={24} style={{ textAlign: "end"}}>
               <Button 
                 ghost

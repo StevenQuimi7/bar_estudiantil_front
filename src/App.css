@@ -75,14 +75,33 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
   background-color: #32a732;
+  border-color: #49a349 !important;
   color: white;
 }
 .btn-exportar:hover {
   transform: translateY(-4px); 
   background-color: #59ca59 !important;
+  border-color: #49a349 !important;
   color: white !important;
 }
 .btn-exportar:focus {
+  outline: none;
+}
+
+.btn-importar{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
+  background-color: #ffffff;
+  border-color: #49a349 !important;
+  color: #387938;
+}
+.btn-importar:hover {
+  transform: translateY(-4px); 
+  background-color: #ffffff !important;
+  border-color: #49a349 !important;
+  color: #387938 !important;
+}
+.btn-importar:focus {
   outline: none;
 }
 
@@ -96,4 +115,13 @@
 .card-tablas{
   width: 100%;
   box-shadow: 3px 3px 7px rgba(0,0,0,0.2);
+}
+
+
+/*---------------------- Table Expandible ----------------------*/
+.custom-table-header-expandible-material .ant-table-thead > tr > th {
+    background-color: #cdcfd1;   /* color de fondo */
+    font-weight: 600;
+    text-align: center;
+  
 }

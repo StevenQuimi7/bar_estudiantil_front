@@ -14,7 +14,8 @@ import {
   AuditOutlined,
   SettingOutlined,
   LogoutOutlined,
-  UnlockOutlined
+  UnlockOutlined,
+  LineChartOutlined
 } from "@ant-design/icons";
 import { Layout, Menu, Drawer, Button, Spin } from "antd";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
@@ -27,6 +28,7 @@ import { logout } from "../features/auth/authSlice";
 const { Content, Footer, Sider } = Layout;
 
 const items = [
+  { key: "dashboards", icon: <LineChartOutlined />, label: "Dashboard", route: "/admin/dashboards" },
   { key: "ventas", icon: <ShoppingCartOutlined />, label: "Ventas", route: "/admin/ventas" },
   { key: "productos", icon: <DropboxOutlined />, label: "Productos", route: "/admin/productos" },
   { key: "clientes", icon: <UsergroupAddOutlined />, label: "Clientes", route: "/admin/clientes" },
@@ -46,7 +48,7 @@ const items = [
 ];
 
 export const AdminLayout = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [drawerVisible, setDrawerVisible] = useState(false);
 
@@ -76,18 +78,36 @@ export const AdminLayout = () => {
     }
   };
 
+
+  const findMenuItem = (menuItems, key) => {
+    for (const item of menuItems) {
+      if (item.key === key) return item;
+
+      if (item.children) {
+        const found = findMenuItem(item.children, key);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+
+
+
   const handleMenuClick = ({ key }) => {
 
-    if(key === 'logout'){
-      handleLogout()
+    if (key === "logout") {
+      handleLogout();
+      return;
     }
 
-    const selectedItem = items.find(item => item.key === key);
-    if (selectedItem) {
+    const selectedItem = findMenuItem(items, key);
+
+    if (selectedItem?.route) {
       navigate(selectedItem.route);
-      if (isMobile) setDrawerVisible(false); // cerrar drawer en móvil
+      if (isMobile) setDrawerVisible(false);
     }
   };
+
 
   const siderStyle = {
     overflow: "auto",

@@ -4,6 +4,7 @@ import { message, notification } from 'antd';
 import moment from 'moment';
 export const useFetchApi = () => {
     const [categorias, setCategorias] = useState({});
+    const [comboCategorias, setComboCategorias] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [messageApi, contextHolder] = message.useMessage();
     const [api, contextHolder2] = notification.useNotification();
@@ -121,10 +122,27 @@ export const useFetchApi = () => {
         }));
     };
 
+    const getComboCategorias = async (values = {}) => {
+        try {
+          setIsLoading(true);
+          const response = await CategoriaService.comboCategorias(values);
+          if (response.ok) {
+            const { data } = response;
+            setComboCategorias(data);
+          }
+        } catch (error) {
+          const msj = error?.msj ?? ["Error en el servidor"];
+          mensaje("error", msj);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
     return {
         categorias, setCategorias,
         isLoading, setIsLoading,
         consultaCategorias,
+        comboCategorias,getComboCategorias,
         storeCategoria,
         updateCategoria,
         deleteCategoria,
